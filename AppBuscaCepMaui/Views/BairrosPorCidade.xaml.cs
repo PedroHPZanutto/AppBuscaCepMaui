@@ -38,8 +38,23 @@ public partial class BairrosPorCidade : ContentPage
         }
     }
 
-    private void pck_cidade_SelectedIndexChanged(object sender, EventArgs e)
+    private async void pck_cidade_SelectedIndexChanged(object sender, EventArgs e)
     {
+        try
+        {
+            Picker disparador = sender as Picker;
 
+            Cidade cidade_selecionada =
+                disparador.SelectedItem as Cidade;
+
+            List<Bairro> arr_bairros =
+                await DataService.GetBairrosByIdCidade(
+                    cidade_selecionada.id_cidade);
+
+            lista_bairros.Clear();
+
+
+        
+        }
     }
 }
