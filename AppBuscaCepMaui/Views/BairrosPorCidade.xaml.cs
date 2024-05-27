@@ -55,6 +55,9 @@ public partial class BairrosPorCidade : ContentPage
 
 
         
+        } catch (Exception ex)
+        {
+            await DisplayAlert("Ops", ex.Message, "OK");
         }
     }
 }
