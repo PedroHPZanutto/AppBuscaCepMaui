@@ -1,4 +1,7 @@
-﻿namespace AppBuscaCepMaui
+﻿using AppBuscaCepMaui.Models;
+using AppBuscaCepMaui.Services;
+
+namespace AppBuscaCepMaui
 {
     public partial class MainPage : ContentPage
     {
@@ -9,16 +12,32 @@
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        
+
+        private async void Button_Clicked(object sender, EventArgs e)
         {
-            count++;
+            try
+            {
+                Endereco dados_endereco = await DataService.GetEnderecoByCep(txt_cep.Text);
+                BindingContext = dados_endereco;
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Ops", ex.Message, "OK");
+            }
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        private async void Button_Clicked_1(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Bairro> arr_bairros = await DataService.GetBairrosByIdCidade(4874);
+            
+            }  
+            catch (Exception ex) 
+            {
+                await DisplayAlert("Ops", ex.Message, "OK");
+            }
         }
     }
 
