@@ -48,12 +48,13 @@ namespace AppBuscaCepMaui.Services
 
                     arr_bairros = JsonConvert.DeserializeObject<List<Bairro>>(json);
                 }
-                else throw new Exception(response.RequestMessage.Content.ToString());
-            
-            
-            
-            
-            
+                else
+                    throw new Exception(response.RequestMessage.Content.ToString());
+
+
+
+
+
             }
             return arr_bairros;
         }
